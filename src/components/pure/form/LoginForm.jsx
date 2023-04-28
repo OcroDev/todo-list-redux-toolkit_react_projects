@@ -13,8 +13,23 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../app/reducers/user/userSlice";
 
+//styles
+const STYLE_TO_DATA = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  border: '1px solid',
+  width: '15rem',
+  background: 'rgba(22, 24, 28, 0.3)',
+  color: 'white',
+  padding: '1em',
+  borderRadius: '10px'
+}
+
 //constantes
 const REGISTER_PAGE_PATH = "/register";
+
 
 export const LoginForm = ({ userState }) => {
   //navigation
@@ -63,55 +78,65 @@ export const LoginForm = ({ userState }) => {
   });
 
   return (
-    <div>
-      <h4 className="m-auto">Login</h4>
+    <>
+      <div>
+        <h4 className="m-auto">Login</h4>
 
-      <form
-        onSubmit={formik.handleSubmit}
-        className="d-flex justify-content-center align-item-center mb-4"
-      >
-        <div className="form-outline flex-fill form-group mt-2">
-          <TextField
-            fullWidth
-            id="email"
-            name="email"
-            label="Email"
-            type="email"
-            value={formik.values.taskName}
-            onChange={formik.handleChange}
-            error={formik.touched.taskName && Boolean(formik.errors.taskName)}
-            helperText={formik.touched.taskName && formik.errors.taskName}
-            className="mb-4"
-          />
-          <TextField
-            fullWidth
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
-            value={formik.values.taskName}
-            onChange={formik.handleChange}
-            error={formik.touched.taskName && Boolean(formik.errors.taskName)}
-            helperText={formik.touched.taskName && formik.errors.taskName}
-            className="mb-4"
-          />
-          <Button type="submit" variant="outlined">
-            Log in
-          </Button>
+        <form
+          onSubmit={formik.handleSubmit}
+          className="d-flex justify-content-center align-item-center mb-4"
+        >
+          <div className="form-outline flex-fill form-group mt-2">
+            <TextField
+              fullWidth
+              id="email"
+              name="email"
+              label="Email"
+              type="email"
+              value={formik.values.taskName}
+              onChange={formik.handleChange}
+              error={formik.touched.taskName && Boolean(formik.errors.taskName)}
+              helperText={formik.touched.taskName && formik.errors.taskName}
+              className="mb-4"
+            />
+            <TextField
+              fullWidth
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              value={formik.values.taskName}
+              onChange={formik.handleChange}
+              error={formik.touched.taskName && Boolean(formik.errors.taskName)}
+              helperText={formik.touched.taskName && formik.errors.taskName}
+              className="mb-4"
+            />
+            <Button type="submit" variant="outlined">
+              Log in
+            </Button>
 
-          <Button
-            variant="contained"
-            className="m-2"
-            onClick={() => navigateTo(REGISTER_PAGE_PATH)}
-          >
-            Sign Up
-          </Button>
+            <Button
+              variant="contained"
+              className="m-2"
+              onClick={() => navigateTo(REGISTER_PAGE_PATH)}
+            >
+              Sign Up
+            </Button>
 
-          {formik.isSubmitting ? (
-            <Alert severity="info">Login your credentials ... </Alert>
-          ) : null}
+            {formik.isSubmitting ? (
+              <Alert severity="info">Login your credentials ... </Alert>
+            ) : null}
+          </div>
+        </form>
+      </div>
+
+      <div style={{position:'fixed', left:'40em'}}>
+        <div style={STYLE_TO_DATA}>
+          <h6><b>Data to login</b></h6>
+          <p><b>Email:</b> eve.holt@reqres.in</p>
+          <p><b>Password:</b> cityslicka </p>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };

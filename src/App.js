@@ -6,6 +6,7 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { unsetUser } from "./app/reducers/user/userSlice";
 import { Home } from "./pages/Home";
 import { LoginPage } from "./pages/LoginPage";
+import { Footer } from "./components/pure/Footer";
 
 export const App = () => {
   const { token } = useSelector((state) => state.user);
@@ -53,6 +54,8 @@ export const App = () => {
           ></Route>
         </Routes>
       </div>
+      <Footer />
+      
     </>
   );
 };
